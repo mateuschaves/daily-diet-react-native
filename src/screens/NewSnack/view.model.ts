@@ -13,8 +13,8 @@ function useNewSnackViewModel() {
     initialValues: {
       snack: '',
       description: '',
-      date: '',
-      time: '',
+      date: new Date().toLocaleDateString('pt-BR'),
+      time: new Date().toLocaleTimeString('pt-BR'),
       isOnDiet: true,
     },
     validationSchema: NewSnackValidationSchema,

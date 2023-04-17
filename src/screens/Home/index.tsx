@@ -13,7 +13,6 @@ import useHomeViewModel from './view.model';
 export default function Home() {
   const { snacks, snacksOnDietPercentage, handleNewSnack } = useHomeViewModel();
 
-  console.log(snacks);
   return (
     <Container>
       <Content>
