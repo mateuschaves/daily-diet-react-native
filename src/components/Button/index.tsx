@@ -9,18 +9,20 @@ export type Variants = 'outlined' | 'filled';
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  icon: keyof typeof MaterialIcons.glyphMap;
+  icon?: keyof typeof MaterialIcons.glyphMap;
   variant?: Variants;
 }
 
 const Button = ({ title, icon, onPress, variant = 'filled' }: ButtonProps) => {
   return (
     <Container onPress={onPress} variant={variant}>
-      <MaterialIcons
-        name={icon}
-        size={24}
-        color={variant === 'filled' ? theme.colors.white : theme.colors.gray200}
-      />
+      {icon && (
+        <MaterialIcons
+          name={icon}
+          size={24}
+          color={variant === 'filled' ? theme.colors.white : theme.colors.gray200}
+        />
+      )}
       <Title variant={variant}>{title}</Title>
     </Container>
   );

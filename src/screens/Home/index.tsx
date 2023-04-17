@@ -9,8 +9,10 @@ import { SectionList } from 'react-native';
 
 import { getPercentageOfSnacksOnDiet, groupSnacksByDate } from '~/utils/array';
 import SnakModel from '~/common/model/snack.model';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
+  const navigation = useNavigation();
   const snacks: SnakModel[] = [
     {
       date: '2023-04-18',
@@ -112,6 +114,10 @@ export default function Home() {
     },
   ];
 
+  function handleNewSnack() {
+    navigation.navigate('NewSnack');
+  }
+
   const snacksOnDietPercentage = getPercentageOfSnacksOnDiet(snacks);
 
   return (
@@ -121,7 +127,7 @@ export default function Home() {
         <DietProgressCard progress={snacksOnDietPercentage} />
 
         <ButtonTitle>Refeições</ButtonTitle>
-        <Button title="Nova refeição" icon="add" onPress={() => {}} />
+        <Button title="Nova refeição" icon="add" onPress={handleNewSnack} />
 
         <SectionList
           sections={groupSnacksByDate(snacks)}
