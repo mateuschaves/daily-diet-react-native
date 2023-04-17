@@ -1,4 +1,4 @@
-export default interface SnakModel {
+export default interface SnackModel {
   date: string;
   time: string;
   snack: string;

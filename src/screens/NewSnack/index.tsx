@@ -1,6 +1,4 @@
 import React from 'react';
-import { Keyboard } from 'react-native';
-import { useFormik } from 'formik';
 
 import Header from '~/components/Header';
 import Field from '~/components/Field';
@@ -8,33 +6,13 @@ import IsOnDietField from './components/IsOnDietField';
 import Button from '~/components/Button';
 
 import { hasError } from '~/utils/formik';
-import NewSnackValidationSchema from './validation';
+
+import useNewSnackViewModel from './view.model';
 
 import { Container, Form, Row } from './styles';
-import { useNavigation } from '@react-navigation/native';
 
 export default function NewSnack() {
-  const navigation = useNavigation();
-
-  const formik = useFormik({
-    initialValues: {
-      snack: '',
-      description: '',
-      date: '',
-      time: '',
-      isOnDiet: true,
-    },
-    validationSchema: NewSnackValidationSchema,
-    onSubmit: (values) => {},
-  });
-
-  function dismissKeyboard() {
-    Keyboard.dismiss();
-  }
-
-  function goBack() {
-    navigation.navigate('Home');
-  }
+  const { formik, goBack, dismissKeyboard } = useNewSnackViewModel();
 
   return (
     <Container>

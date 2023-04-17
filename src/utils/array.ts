@@ -1,7 +1,7 @@
-import SnakModel from '~/common/model/snack.model';
+import SnackModel from '~/common/model/snack.model';
 import { getDietDateFormatted } from './string';
 
-function groupSnacksByDate(snacks: SnakModel[]) {
+function groupSnacksByDate(snacks: SnackModel[]) {
   const groupedSnacks = snacks.reduce((acc, snack) => {
     const date = snack.date;
     if (!acc[date]) {
@@ -18,7 +18,7 @@ function groupSnacksByDate(snacks: SnakModel[]) {
   });
 }
 
-function getPercentageOfSnacksOnDiet(snacks: SnakModel[]) {
+function getPercentageOfSnacksOnDiet(snacks: SnackModel[]) {
   if (snacks.length === 0) return '0,00';
 
   const snacksOnDiet = snacks.filter((snack) => snack.isOnDiet);

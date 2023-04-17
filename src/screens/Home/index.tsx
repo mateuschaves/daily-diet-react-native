@@ -7,119 +7,13 @@ import Button from '~/components/Button';
 import SnackItem from './components/SnackItem';
 import { SectionList } from 'react-native';
 
-import { getPercentageOfSnacksOnDiet, groupSnacksByDate } from '~/utils/array';
-import SnakModel from '~/common/model/snack.model';
-import { useNavigation } from '@react-navigation/native';
+import { groupSnacksByDate } from '~/utils/array';
+import useHomeViewModel from './view.model';
 
 export default function Home() {
-  const navigation = useNavigation();
-  const snacks: SnakModel[] = [
-    {
-      date: '2023-04-18',
-      time: '10:00',
-      snack: 'Pêra',
-      description: 'Cortada em fatias',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-17',
-      time: '15:30',
-      snack: 'Castanhas mistas',
-      description: 'Cruas, sem sal',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-16',
-      time: '9:00',
-      snack: 'Iogurte natural',
-      description: 'Desnatado, com granola',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-15',
-      time: '11:30',
-      snack: 'Cottage cheese',
-      description: 'Light, com melão',
-      isOnDiet: false,
-    },
-    {
-      date: '2023-04-14',
-      time: '16:00',
-      snack: 'Cenouras baby',
-      description: 'Cruas, com homus',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-13',
-      time: '14:00',
-      snack: 'Banana',
-      description: 'Cortada em rodelas',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-13',
-      time: '18:00',
-      snack: 'Palitos de cenoura',
-      description: 'Com cream cheese light',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-12',
-      time: '10:30',
-      snack: 'Queijo em palito',
-      description: 'Light, de mussarela',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-11',
-      time: '15:30',
-      snack: 'Grão de bico assado',
-      description: 'Temperado com cominho e coentro',
-      isOnDiet: false,
-    },
-    {
-      date: '2023-04-10',
-      time: '11:00',
-      snack: 'Maçã fatiada',
-      description: 'Com manteiga de amêndoa',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-09',
-      time: '18:00',
-      snack: 'Aipo em palitos',
-      description: 'Com cream cheese light',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-08',
-      time: '9:00',
-      snack: 'Iogurte grego',
-      description: 'Light, natural, com morangos',
-      isOnDiet: true,
-    },
-    {
-      date: '2023-04-07',
-      time: '11:30',
-      snack: 'Cottage cheese',
-      description: 'Light, com pêssegos',
-      isOnDiet: false,
-    },
-    {
-      date: '2023-04-06',
-      time: '16:00',
-      snack: 'Cenouras baby',
-      description: 'Cruas, com hummus',
-      isOnDiet: true,
-    },
-  ];
+  const { snacks, snacksOnDietPercentage, handleNewSnack } = useHomeViewModel();
 
-  function handleNewSnack() {
-    navigation.navigate('NewSnack');
-  }
-
-  const snacksOnDietPercentage = getPercentageOfSnacksOnDiet(snacks);
-
+  console.log(snacks);
   return (
     <Container>
       <Content>
