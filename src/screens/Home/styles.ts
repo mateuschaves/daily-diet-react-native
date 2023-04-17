@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components/native';
 
-export const Container = styled.SafeAreaView``;
+export const Container = styled.SafeAreaView`
+  flex: 1;
+`;
 
 export const Content = styled.ScrollView`
   padding: 8px 24px;
