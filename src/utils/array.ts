@@ -19,11 +19,11 @@ function groupSnacksByDate(snacks: SnackModel[]) {
 }
 
 function getPercentageOfSnacksOnDiet(snacks: SnackModel[]) {
-  if (snacks.length === 0) return '0,00';
+  if (snacks.length === 0) return 0;
 
   const snacksOnDiet = snacks.filter((snack) => snack.isOnDiet);
-  const percentage = ((snacksOnDiet.length / snacks.length) * 100).toFixed(2).replace('.', ',');
-  return percentage;
+  const percentage = ((snacksOnDiet.length / snacks.length) * 100).toFixed(2);
+  return Number(percentage);
 }
 
 export { groupSnacksByDate, getPercentageOfSnacksOnDiet };

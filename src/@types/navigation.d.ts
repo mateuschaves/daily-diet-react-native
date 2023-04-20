@@ -3,6 +3,10 @@ export declare global {
     interface RootParamList {
       Home: undefined;
       NewSnack: undefined;
+      SnackResume: {
+        snackPercent: number;
+        snacks: SnackModel[];
+      };
     }
   }
 }

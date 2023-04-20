@@ -6,15 +6,18 @@ import theme from '~/theme';
 export type cardVariant = 'green' | 'red';
 
 interface DietProgressCardProps {
-  progress: number | string;
+  progress: number;
   variant?: cardVariant;
+  onPress?: () => void;
 }
 
-const DietProgressCard = ({ progress, variant = 'green' }: DietProgressCardProps) => {
+const DietProgressCard = ({ progress, onPress, variant = 'green' }: DietProgressCardProps) => {
+  const progressFormatted = progress.toFixed(2);
+
   return (
-    <Container variant={variant}>
+    <Container variant={variant} onPress={onPress}>
       <Icon color={theme.colors.greenDark} size={24} weight="regular" />
-      <Progress>{progress}%</Progress>
+      <Progress>{progressFormatted}%</Progress>
       <Description>das refeições dentro da dieta</Description>
     </Container>
   );

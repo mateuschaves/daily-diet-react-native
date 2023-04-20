@@ -10,6 +10,8 @@ function useHomeViewModel() {
 
   const [snacks, setSnacks] = useState<SnackModel[]>([]);
 
+  const snacksOnDietPercentage = getPercentageOfSnacksOnDiet(snacks);
+
   useFocusEffect(
     useCallback(() => {
       fetchSnacks();
@@ -20,16 +22,22 @@ function useHomeViewModel() {
     navigation.navigate('NewSnack');
   }
 
+  function handleSnackResume() {
+    navigation.navigate('SnackResume', {
+      snackPercent: snacksOnDietPercentage,
+      snacks: snacks,
+    });
+  }
+
   function fetchSnacks() {
     getSnacks().then(setSnacks);
   }
-
-  const snacksOnDietPercentage = getPercentageOfSnacksOnDiet(snacks);
 
   return {
     snacks,
     snacksOnDietPercentage,
     handleNewSnack,
+    handleSnackResume,
   };
 }
 

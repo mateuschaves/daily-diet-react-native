@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components/native';
 import { cardVariant } from '.';
 import { ArrowUpRight } from 'phosphor-react-native';
 
-export const Container = styled.View<{ variant: cardVariant }>`
+export const Container = styled.TouchableOpacity<{ variant: cardVariant }>`
   background-color: ${({ theme, variant }) =>
     variant === 'green' ? theme.colors.greenLight : theme.colors.redLight};
 
