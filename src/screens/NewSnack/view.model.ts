@@ -32,7 +32,7 @@ function useNewSnackViewModel() {
   async function saveSnack(snack: SnackModel) {
     try {
       await createSnack(snack);
-      goBack();
+      navigation.navigate('SnackAdded', { onDiet: snack.isOnDiet });
     } catch (error) {
       // tratar erro
     }

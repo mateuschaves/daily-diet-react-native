@@ -7,6 +7,9 @@ export declare global {
         snackPercent: number;
         snacks: SnackModel[];
       };
+      SnackAdded: {
+        onDiet: boolean;
+      };
     }
   }
 }

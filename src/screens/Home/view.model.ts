@@ -1,5 +1,5 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useId } from 'react';
 import SnackModel from '~/common/model/snack.model';
 import { getPercentageOfSnacksOnDiet } from '~/utils/array';
 
