@@ -11,13 +11,18 @@ import { groupSnacksByDate } from '~/utils/array';
 import useHomeViewModel from './view.model';
 
 export default function Home() {
-  const { snacks, snacksOnDietPercentage, handleNewSnack, handleSnackResume } = useHomeViewModel();
+  const { snacks, snacksOnDietPercentage, handleNewSnack, handleSnackResume, snackCardVariant } =
+    useHomeViewModel();
 
   return (
     <Container>
       <Content>
         <Header />
-        <DietProgressCard progress={snacksOnDietPercentage} onPress={handleSnackResume} />
+        <DietProgressCard
+          progress={snacksOnDietPercentage}
+          onPress={handleSnackResume}
+          variant={snackCardVariant}
+        />
 
         <ButtonTitle>Refeições</ButtonTitle>
         <Button title="Nova refeição" icon="add" onPress={handleNewSnack} />

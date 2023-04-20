@@ -4,6 +4,7 @@ import SnackModel from '~/common/model/snack.model';
 import { getPercentageOfSnacksOnDiet } from '~/utils/array';
 
 import { getSnacks } from '~/storage/snack';
+import { cardVariant } from './components/DietProgressCard';
 
 function useHomeViewModel() {
   const navigation = useNavigation();
@@ -11,6 +12,8 @@ function useHomeViewModel() {
   const [snacks, setSnacks] = useState<SnackModel[]>([]);
 
   const snacksOnDietPercentage = getPercentageOfSnacksOnDiet(snacks);
+
+  const snackCardVariant: cardVariant = snacksOnDietPercentage >= 50 ? 'green' : 'red';
 
   useFocusEffect(
     useCallback(() => {
@@ -38,6 +41,7 @@ function useHomeViewModel() {
     snacksOnDietPercentage,
     handleNewSnack,
     handleSnackResume,
+    snackCardVariant,
   };
 }
 
