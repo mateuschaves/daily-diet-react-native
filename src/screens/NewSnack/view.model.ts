@@ -14,7 +14,7 @@ function useNewSnackViewModel() {
       snack: '',
       description: '',
       date: new Date().toLocaleDateString('pt-BR'),
-      time: new Date().toLocaleTimeString('pt-BR'),
+      time: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
       isOnDiet: true,
     },
     validationSchema: NewSnackValidationSchema,
