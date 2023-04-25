@@ -13,11 +13,14 @@ import { Container, Content, Form, Row } from './styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function NewSnack() {
-  const { formik, goBack, dismissKeyboard } = useNewSnackViewModel();
+  const { formik, goBack, dismissKeyboard, snackId } = useNewSnackViewModel();
+
+  const title = snackId ? 'Editar refeição' : 'Nova refeição';
+  const buttonTitle = snackId ? 'Salvar alterações' : 'Cadastrar refeição';
 
   return (
     <Container>
-      <Header title="Nova refeição" goBack={goBack} />
+      <Header title={title} goBack={goBack} />
       <Content>
         <KeyboardAwareScrollView>
           <Form onTouchStart={dismissKeyboard}>
@@ -72,7 +75,7 @@ export default function NewSnack() {
             <IsOnDietField setFieldValue={formik.setFieldValue} value={formik.values.isOnDiet} />
           </Form>
         </KeyboardAwareScrollView>
-        <Button title="Cadastrar refeição" onPress={formik.submitForm} />
+        <Button title={buttonTitle} onPress={formik.submitForm} />
       </Content>
     </Container>
   );

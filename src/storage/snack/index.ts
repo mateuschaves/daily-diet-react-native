@@ -14,6 +14,8 @@ async function createSnack(snack: SnackModel) {
 async function getSnacks(): Promise<SnackModel[]> {
   try {
     const snacks = await client.get<SnackModel[]>('snacks');
+
+    console.log(snacks);
     return snacks || [];
   } catch (error) {
     return [];
@@ -25,17 +27,19 @@ async function deleteSnack(snack: SnackModel) {
     const snacks = await client.get<SnackModel[]>('snacks');
     if (!snacks || !snacks.length) return;
 
-    const newSnacks = snacks.filter((item) => item !== snack);
+    const newSnacks = snacks.filter((item) => item.id != snack.id);
     await client.store<SnackModel[]>('snacks', newSnacks);
   } catch (error) {}
 }
 
-async function updateSnack(snack: SnackModel) {
+async function updateSnackById(snack: SnackModel) {
   try {
     const snacks = await client.get<SnackModel[]>('snacks');
     if (!snacks || !snacks.length) return;
 
-    const newSnacks = snacks.map((item) => (item === snack ? snack : item));
+    const newSnacks = snacks.map((item) =>
+      item.id === snack.id ? snack : { ...item, id: item.id }
+    );
     await client.store<SnackModel[]>('snacks', newSnacks);
   } catch (error) {}
 }
@@ -54,4 +58,4 @@ async function getSnackById(id: string) {
   }
 }
 
-export { createSnack, getSnacks, deleteSnack, updateSnack, getSnackById };
+export { createSnack, getSnacks, deleteSnack, updateSnackById, getSnackById };

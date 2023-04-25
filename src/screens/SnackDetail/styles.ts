@@ -51,9 +51,10 @@ export const FormDateLabel = styled.Text`
 export const FormDate = styled(FormDescription)``;
 
 export const Content = styled.View`
-  flex: 1;
+  flex: 3;
 `;
 
 export const Actions = styled.View`
+  flex: 1;
   gap: 8px;
 `;

@@ -6,7 +6,7 @@ import Button from '~/components/Button';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import SnackModel from '~/common/model/snack.model';
 import theme from '~/theme';
-import { getSnackById } from '~/storage/snack';
+import { deleteSnack, getSnackById } from '~/storage/snack';
 
 import {
   Container,
@@ -18,13 +18,15 @@ import {
   Content,
   Actions,
 } from './styles';
-import SnackTag from './SnackTag';
+import SnackTag from './components/SnackTag';
+import ConfirmDeleteSnackModal from './components/ConfirmDeleteSnackModal';
 
 export default function SnackDetail() {
   const route = useRoute();
   const navigation = useNavigation();
 
   const [snack, setSnack] = useState<SnackModel>();
+  const [isDeleteSnackModalVisible, setIsDeleteSnackModalVisible] = useState(false);
 
   function handleGoBack() {
     navigation.navigate('Home');
@@ -32,11 +34,33 @@ export default function SnackDetail() {
 
   const { snackId } = route.params as { snackId: string };
 
+  console.log('snack', snack);
+
   const color = snack?.isOnDiet ? theme.colors.greenLight : theme.colors.redLight;
 
   useEffect(() => {
     getSnackById(snackId).then(setSnack);
   }, [snackId]);
+
+  function handleEditSnack() {
+    navigation.navigate('NewSnack', { snackId });
+  }
+
+  function handleShowDeleteSnackModal() {
+    setIsDeleteSnackModalVisible(true);
+  }
+
+  async function handleDeleteSnack() {
+    handleDismissDeleteSnackModal();
+    if (!snack) return;
+
+    await deleteSnack(snack);
+    handleGoBack();
+  }
+
+  function handleDismissDeleteSnackModal() {
+    setIsDeleteSnackModalVisible(false);
+  }
 
   return (
     <Container backgroundColor={color}>
@@ -53,10 +77,21 @@ export default function SnackDetail() {
           <SnackTag isOnDiet={snack?.isOnDiet || false} />
         </Content>
         <Actions>
-          <Button title="Editar Refeição" icon="edit" onPress={() => {}} />
-          <Button title="Excluir Refeição" icon="delete" onPress={() => {}} variant="outlined" />
+          <Button title="Editar Refeição" icon="edit" onPress={handleEditSnack} />
+          <Button
+            title="Excluir Refeição"
+            icon="delete"
+            onPress={handleShowDeleteSnackModal}
+            variant="outlined"
+          />
         </Actions>
       </Form>
+
+      <ConfirmDeleteSnackModal
+        isVisible={isDeleteSnackModalVisible}
+        onCancel={handleDismissDeleteSnackModal}
+        onConfirm={handleDeleteSnack}
+      />
     </Container>
   );
 }
