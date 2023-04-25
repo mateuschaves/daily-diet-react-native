@@ -10,6 +10,9 @@ export declare global {
       SnackAdded: {
         onDiet: boolean;
       };
+      SnackDetail: {
+        snackId: string;
+      };
     }
   }
 }

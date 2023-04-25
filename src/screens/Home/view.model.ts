@@ -1,5 +1,5 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { useState, useCallback, useId } from 'react';
+import { useState, useCallback } from 'react';
 import SnackModel from '~/common/model/snack.model';
 import { getPercentageOfSnacksOnDiet } from '~/utils/array';
 
@@ -25,6 +25,12 @@ function useHomeViewModel() {
     navigation.navigate('NewSnack');
   }
 
+  function handleDetailSnack(id: string) {
+    navigation.navigate('SnackDetail', {
+      snackId: id,
+    });
+  }
+
   function handleSnackResume() {
     navigation.navigate('SnackResume', {
       snackPercent: snacksOnDietPercentage,
@@ -42,6 +48,7 @@ function useHomeViewModel() {
     handleNewSnack,
     handleSnackResume,
     snackCardVariant,
+    handleDetailSnack,
   };
 }
 

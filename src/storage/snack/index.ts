@@ -40,4 +40,18 @@ async function updateSnack(snack: SnackModel) {
   } catch (error) {}
 }
 
-export { createSnack, getSnacks, deleteSnack, updateSnack };
+async function getSnackById(id: string) {
+  try {
+    if (!id) return;
+
+    const snacks = await client.get<SnackModel[]>('snacks');
+    if (!snacks || !snacks.length) return;
+
+    const snack = snacks.find((item) => item.id === id);
+    return snack;
+  } catch (error) {
+    return;
+  }
+}
+
+export { createSnack, getSnacks, deleteSnack, updateSnack, getSnackById };

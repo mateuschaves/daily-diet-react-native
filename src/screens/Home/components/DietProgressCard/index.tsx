@@ -13,10 +13,11 @@ interface DietProgressCardProps {
 
 const DietProgressCard = ({ progress, onPress, variant = 'green' }: DietProgressCardProps) => {
   const progressFormatted = progress.toFixed(2);
+  const color = variant === 'green' ? theme.colors.greenDark : theme.colors.redDark;
 
   return (
     <Container variant={variant} onPress={onPress}>
-      <Icon color={theme.colors.greenDark} size={24} weight="regular" />
+      <Icon color={color} size={24} weight="regular" />
       <Progress>{progressFormatted}%</Progress>
       <Description>das refeições dentro da dieta</Description>
     </Container>

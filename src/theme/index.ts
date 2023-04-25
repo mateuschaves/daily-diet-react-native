@@ -1,3 +1,5 @@
+export type ColorsType = keyof typeof theme.colors;
+
 const theme = {
   colors: {
     redDark: '#BF3B44',
@@ -24,6 +26,7 @@ const theme = {
     medium: '14px',
     large: '16px',
     xlarge: '18px',
+    xmedium: '20px',
     xxlarge: '24px',
     xxxlarge: '32px',
   },

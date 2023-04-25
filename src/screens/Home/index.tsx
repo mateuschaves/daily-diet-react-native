@@ -11,8 +11,14 @@ import { groupSnacksByDate } from '~/utils/array';
 import useHomeViewModel from './view.model';
 
 export default function Home() {
-  const { snacks, snacksOnDietPercentage, handleNewSnack, handleSnackResume, snackCardVariant } =
-    useHomeViewModel();
+  const {
+    snacks,
+    snacksOnDietPercentage,
+    handleNewSnack,
+    handleSnackResume,
+    snackCardVariant,
+    handleDetailSnack,
+  } = useHomeViewModel();
 
   return (
     <Container>
@@ -29,10 +35,15 @@ export default function Home() {
 
         <SectionList
           sections={groupSnacksByDate(snacks)}
-          keyExtractor={(item) => item.snack}
+          keyExtractor={(item) => item?.id?.toString()}
           contentContainerStyle={{ marginTop: 32 }}
           renderItem={({ item }) => (
-            <SnackItem snack={item.snack} time={item.time} isOnDiet={item.isOnDiet} />
+            <SnackItem
+              snack={item.snack}
+              time={item.time}
+              isOnDiet={item.isOnDiet}
+              onPress={() => handleDetailSnack(item.id)}
+            />
           )}
           renderSectionHeader={({ section: { title } }) => (
             <ListSectionTitle>{title}</ListSectionTitle>

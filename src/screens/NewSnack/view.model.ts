@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 import { useNavigation } from '@react-navigation/native';
 import { Keyboard } from 'react-native';
 import { useFormik } from 'formik';
@@ -8,9 +10,11 @@ import { createSnack } from '~/storage/snack';
 
 function useNewSnackViewModel() {
   const navigation = useNavigation();
+  const id = useId();
 
   const formik = useFormik({
     initialValues: {
+      id,
       snack: '',
       description: '',
       date: new Date().toLocaleDateString('pt-BR'),
