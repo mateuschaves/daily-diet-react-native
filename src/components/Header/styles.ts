@@ -1,6 +1,6 @@
+import { Platform } from 'react-native';
 import { getStatusBarHeight } from 'react-native-safearea-height';
 import styled, { css } from 'styled-components/native';
-import { ColorsType } from '~/theme/index';
 
 export const Container = styled.View<{ color?: string }>`
   flex-direction: row;
@@ -11,6 +11,7 @@ export const Container = styled.View<{ color?: string }>`
   `}
 
   padding: ${getStatusBarHeight()}px 24px;
+  padding-top: ${Platform.OS === 'ios' ? getStatusBarHeight() : 50}px;
 `;
 
 export const Title = styled.Text`
@@ -22,8 +23,9 @@ export const Title = styled.Text`
   text-align: center;
 `;
 
-export const TitleContainer = styled.Text`
+export const TitleContainer = styled.View`
   position: absolute;
+  top: ${Platform.OS === 'ios' ? getStatusBarHeight() : 50}px;
   left: 0;
   right: 0;
   margin: 0 auto;

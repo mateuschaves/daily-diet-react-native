@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components/native';
+import { Platform } from 'react-native';
 import { getStatusBarHeight } from 'react-native-safearea-height';
 
 export const Container = styled.View<{ color: string }>`
   background-color: ${({ color }) => color};
 
-  padding-top: ${getStatusBarHeight()}px;
+  padding-top: ${Platform.OS === 'ios' ? getStatusBarHeight() : 50}px;
   padding-bottom: 34px;
 `;
 
