@@ -12,7 +12,7 @@ interface DietProgressCardProps {
 }
 
 const DietProgressCard = ({ progress, onPress, variant = 'green' }: DietProgressCardProps) => {
-  const progressFormatted = progress.toFixed(2);
+  const progressFormatted = progress.toFixed(2).replaceAll('.', ',');
   const color = variant === 'green' ? theme.colors.greenDark : theme.colors.redDark;
 
   return (

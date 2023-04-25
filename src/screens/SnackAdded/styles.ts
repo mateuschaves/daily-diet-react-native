@@ -5,14 +5,20 @@ import { css } from 'styled-components';
 export const Container = styled.View`
   flex: 1;
 
-  background-color: ${({ theme }) => theme.colors.white};
-  align-items: center;
+  background-color: green;
+
   justify-content: center;
+  align-items: center;
+
+  background-color: ${({ theme }) => theme.colors.white};
+
+  padding: 0 32px;
 `;
 
 export const Content = styled.View`
+  flex: 1;
+
   width: 100%;
-  padding: 0 32px;
 
   align-items: center;
 `;

@@ -34,8 +34,6 @@ export default function SnackDetail() {
 
   const { snackId } = route.params as { snackId: string };
 
-  console.log('snack', snack);
-
   const color = snack?.isOnDiet ? theme.colors.greenLight : theme.colors.redLight;
 
   useEffect(() => {

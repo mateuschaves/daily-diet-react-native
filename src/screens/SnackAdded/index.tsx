@@ -5,8 +5,10 @@ import OnDietImage from '~/assets/images/on-diet-meal.png';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { Container, Title, Description, ReactionImage, Content, DescriptionBold } from './styles';
 import Button from '~/components/Button';
+
+import { Container, Title, Description, ReactionImage, Content, DescriptionBold } from './styles';
+import { View } from 'react-native';
 
 export interface SnackAddedProps {
   onDiet: boolean;
@@ -37,13 +39,11 @@ export default function SnackAdded() {
 
   return (
     <Container>
-      <Content>
-        <Title onDiet={onDiet}>{title}</Title>
-        {DescriptionFormatted}
-        <ReactionImage source={image} resizeMethod="auto" resizeMode="contain" />
+      <Title onDiet={onDiet}>{title}</Title>
+      {DescriptionFormatted}
+      <ReactionImage source={image} resizeMethod="auto" resizeMode="contain" />
 
-        <Button title="Ir para a página inicial" onPress={handleGoToHome} />
-      </Content>
+      <Button title="Ir para a página inicial" onPress={handleGoToHome} />
     </Container>
   );
 }

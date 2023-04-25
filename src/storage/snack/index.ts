@@ -14,8 +14,6 @@ async function createSnack(snack: SnackModel) {
 async function getSnacks(): Promise<SnackModel[]> {
   try {
     const snacks = await client.get<SnackModel[]>('snacks');
-
-    console.log(snacks);
     return snacks || [];
   } catch (error) {
     return [];
