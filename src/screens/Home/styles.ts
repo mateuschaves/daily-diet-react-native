@@ -8,7 +8,8 @@ export const Container = styled.SafeAreaView`
   padding-top: 40px;
 `;
 
-export const Content = styled.ScrollView`
+export const Content = styled.View`
+  flex: 1;
   padding: 8px 24px;
 `;
 
