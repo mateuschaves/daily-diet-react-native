@@ -8,12 +8,14 @@ async function createSnack(snack: SnackModel) {
     const newSnacks = snacks?.length ? [...snacks, snack] : [snack];
 
     await client.store<SnackModel[]>('snacks', newSnacks);
-  } catch (error) {}
+  } catch (error) { }
 }
 
 async function getSnacks(): Promise<SnackModel[]> {
   try {
     const snacks = await client.get<SnackModel[]>('snacks');
+    snacks?.sort((a, b) => (a.date > b.date ? 1 : -1))
+
     return snacks || [];
   } catch (error) {
     return [];
@@ -27,7 +29,7 @@ async function deleteSnack(snack: SnackModel) {
 
     const newSnacks = snacks.filter((item) => item.id != snack.id);
     await client.store<SnackModel[]>('snacks', newSnacks);
-  } catch (error) {}
+  } catch (error) { }
 }
 
 async function updateSnackById(snack: SnackModel) {
@@ -39,7 +41,7 @@ async function updateSnackById(snack: SnackModel) {
       item.id === snack.id ? snack : { ...item, id: item.id }
     );
     await client.store<SnackModel[]>('snacks', newSnacks);
-  } catch (error) {}
+  } catch (error) { }
 }
 
 async function getSnackById(id: string) {

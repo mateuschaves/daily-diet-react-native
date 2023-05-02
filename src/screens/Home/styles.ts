@@ -33,3 +33,7 @@ export const ListSectionTitle = styled.Text`
 
   margin-bottom: 8px;
 `;
+
+export const SnackList = styled.SectionList`
+  flex: 1;
+`
