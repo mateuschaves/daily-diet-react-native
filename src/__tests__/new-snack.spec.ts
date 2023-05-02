@@ -42,7 +42,7 @@ jest.mock('@react-native-async-storage/async-storage', () => {
 
 const createSnackSpy = jest.spyOn(storageSnack, 'createSnack');
 
-describe('New snack', () => {
+describe('useNewSnackViewModel', () => {
   afterEach(() => {
     jest.resetAllMocks();
   })

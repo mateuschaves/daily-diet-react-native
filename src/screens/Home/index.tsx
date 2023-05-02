@@ -5,10 +5,10 @@ import Header from './components/Header';
 import DietProgressCard from './components/DietProgressCard';
 import Button from '~/components/Button';
 import SnackItem from './components/SnackItem';
-import { SectionList } from 'react-native';
 
 import { groupSnacksByDate } from '~/utils/array';
 import useHomeViewModel from './view.model';
+import { SectionList } from 'react-native';
 
 export default function Home() {
   const {
@@ -34,6 +34,7 @@ export default function Home() {
         <Button title="Nova refeição" icon="add" onPress={handleNewSnack} />
 
         <SectionList
+          style={{ flex: 1 }}
           sections={groupSnacksByDate(snacks)}
           keyExtractor={(item) => item?.id?.toString()}
           contentContainerStyle={{ marginTop: 32 }}
