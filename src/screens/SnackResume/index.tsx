@@ -9,11 +9,11 @@ import { Container, Content, Row, Title } from './styles';
 export default function SnackResume() {
   const {
     snackPercent,
-    bestSequenceInDiet,
     snacksAmount,
     snakcsOnDiet,
     snacksOutOfDiet,
     handleGoBack,
+    findBestSnackSequence
   } = useSnackResume();
 
   return (
@@ -22,7 +22,7 @@ export default function SnackResume() {
       <Content>
         <Title>Estatísticas gerais</Title>
 
-        <Card title={bestSequenceInDiet} description="melhor sequência de pratos dentro da dieta" />
+        <Card title={findBestSnackSequence()} description="melhor sequência de pratos dentro da dieta" />
         <Card title={snacksAmount} description="refeições registradas" />
 
         <Row>

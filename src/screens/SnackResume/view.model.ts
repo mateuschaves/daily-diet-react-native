@@ -7,17 +7,6 @@ export default function useSnackResume() {
 
   const { snackPercent, snacks } = route.params as { snackPercent: number; snacks: SnackModel[] };
 
-  const bestSequenceInDiet = snacks.reduce((sequence, snack, currentSnackIndex) => {
-    if (!snack.isOnDiet) {
-      const hasSnackOnDietAfter = snacks.slice(currentSnackIndex).some((snack) => snack.isOnDiet);
-
-      if (!hasSnackOnDietAfter) {
-        return sequence;
-      }
-    }
-    return snack.isOnDiet ? sequence + 1 : 0;
-  }, 0);
-
   const snacksAmount = snacks.length;
   const snakcsOnDiet = snacks.filter((snack) => snack.isOnDiet).length;
   const snacksOutOfDiet = snacksAmount - snakcsOnDiet;
@@ -26,13 +15,35 @@ export default function useSnackResume() {
     navigation.navigate('Home');
   }
 
+  function findBestSnackSequence() {
+    let bestSnackSequence = 0;
+    let currentSnackSequence = 0;
+
+    snacks.forEach((snack) => {
+      if (snack.isOnDiet) {
+        currentSnackSequence++;
+      } else {
+        if (currentSnackSequence > bestSnackSequence) {
+          bestSnackSequence = currentSnackSequence;
+        }
+        currentSnackSequence = 0;
+      }
+    });
+
+    if (currentSnackSequence > bestSnackSequence) {
+      bestSnackSequence = currentSnackSequence;
+    }
+
+    return bestSnackSequence;
+  }
+
   return {
     snackPercent,
     snacks,
-    bestSequenceInDiet,
     snacksAmount,
     snakcsOnDiet,
     snacksOutOfDiet,
     handleGoBack,
+    findBestSnackSequence
   };
 }
